@@ -373,12 +373,12 @@ en:
   enter_password_to_confirm: "(we need your current password to confirm your changes)"
   environment: "Environment"
   error: error
-  error_prohibited_this_record_from_being_saved:
-    one: "error prohibited this record from being saved"
-    other: "errors prohibited this record from being saved"
   errors:
     messages:
       no_shipping_methods_available: "No shipping methods available for selected location, please change your address and try again."
+  errors_prohibited_this_record_from_being_saved:
+    one: "1 error prohibited this record from being saved"
+    other: "%{count} errors prohibited this record from being saved"
   event: Event
   existing_customer: "Existing Customer"
   expiration: "Expiration"
@@ -550,8 +550,9 @@ en:
     variant_not_deleted: "Variant could not be deleted"
   on_hand: "On Hand"
   operation: Operation
-  option_Values: "Option Values"
+  option_type: "Option Type"
   option_types: "Option Types"
+  option_value: "Option Value"
   option_values: "Option Values"
   options: Options
   or: or
