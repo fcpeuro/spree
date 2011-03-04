@@ -373,7 +373,9 @@ en:
   enter_password_to_confirm: "(we need your current password to confirm your changes)"
   environment: "Environment"
   error: error
-
+  error_prohibited_this_record_from_being_saved:
+    one: "error prohibited this record from being saved"
+    other: "errors prohibited this record from being saved"
   errors:
     messages:
       no_shipping_methods_available: "No shipping methods available for selected location, please change your address and try again."
@@ -769,7 +771,6 @@ en:
         sentence: with property <em>%s</em> and value <em>%s</em>
   products: Products
   products_with_zero_inventory_display: "Products with a zero inventory will %{not} be displayed"
-  prohibited_this_record: "prohibited this record from being saved"
   properties: Properties
   property: Property
   prototype: Prototype
