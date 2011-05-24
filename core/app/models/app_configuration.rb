@@ -17,9 +17,9 @@ class AppConfiguration < Configuration
   preference :admin_products_per_page, :integer, :default => 10
   preference :admin_pgroup_preview_size, :integer, :default => 10
   preference :products_per_page, :integer, :default => 10
-  preference :logo, :string, :default => '/images/admin/bg/spree_50.png'
-  preference :stylesheets, :string, :default => 'screen' # Comma separate multiple stylesheets, e.g. 'screen,mystyle'
-  preference :admin_interface_logo, :string, :default => "admin/bg/spree_50.png"
+  preference :logo, :string, :default => '/admin/images/bg/spree_50.png'
+  preference :stylesheets, :string, :default => 'reset,screen' # Comma separate multiple stylesheets, e.g. 'screen,mystyle'
+  preference :admin_interface_logo, :string, :default => "/admin/images/bg/spree_50.png"
   preference :allow_ssl_in_production, :boolean, :default => true
   preference :allow_ssl_in_development_and_test, :boolean, :default => false
   preference :allow_guest_checkout, :boolean, :default => true
@@ -35,6 +35,7 @@ class AppConfiguration < Configuration
   preference :use_content_controller, :boolean, :default => true
   preference :allow_checkout_on_gateway_error, :boolean, :default => false
   preference :select_taxons_from_tree, :boolean, :default => false # provide opportunity to select taxons from tree instead of search with autocomplete
+  preference :max_level_in_taxons_menu, :integer, :default => 1 # maximum nesting level in taxons menu
 
   validates :name, :presence => true, :uniqueness => true
 
