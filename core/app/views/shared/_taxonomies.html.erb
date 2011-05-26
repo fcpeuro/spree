@@ -1,13 +1,9 @@
 <div id="taxonomies" class="sidebar-item">
   <% get_taxonomies.each do |taxonomy| %>
-    <ul class="navigation-list">
-      <li<%== ' class="current"' if @taxon && @taxon == taxonomy.root %>>
-        <%= link_to t("shop_by_taxonomy", :taxonomy => taxonomy.name.singularize), seo_url(taxonomy.root),
-                                          :class => 'root' %>
-      </li>
-
+    <h3 class='taxonomy-root'><%= t("shop_by_taxonomy", :taxonomy => taxonomy.name.singularize) %></h3>
+    <ul class="taxons-list">  
       <% taxonomy.root.children.each do |taxon| %>
-        <li<%== ' class="current"' if @taxon and ([@taxon] + @taxon.ancestors).include?(taxon) %>>
+        <li<%== ' class="current"' if @taxon and @taxon.self_and_ancestors.include?(taxon) %>>
           <%= link_to taxon.name, seo_url(taxon) %>
         </li>
 	    <% end %>

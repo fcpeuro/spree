@@ -1,22 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head data-hook="inside_head">
     <%= render :partial => 'shared/head'%>
-    <% @body_class ||= content_for?(:sidebar) ? 'two-col' : 'one-col' %>
   </head>
-  <body class="<%= @body_class %>" id="<%= @body_id %>">
-    <div id="header" class="container_bg">
-      <div class="container">
-        <div id="login-bar">
-          <ul id="nav-bar">
-            <%= render 'shared/nav_bar' %>
-          </ul>
-        </div>
+  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>">
+    <div id="header">
+      <ul id="nav-bar">
+        <%= render 'shared/nav_bar' %>
+      </ul>
+      <div data-hook="logo">
         <%= logo %>
       </div>
     </div>
 
-    <div id="wrapper" class="container">
+    <div id="wrapper">
       <% if content_for?(:sidebar) %>
         <div id="sidebar" data-hook data-layer="1">
           <%= yield :sidebar %>
@@ -24,17 +21,15 @@
       <% end %>
 
       <div id="content">
-        <%= breadcrumbs(@taxon) if @taxon %>
-        <% if flash.notice %>
-        <div class="flash notice"><%= flash.notice %></div>
-        <% end %>
-        <% if flash[:error] %>
-        <div class="flash errors"><%= flash[:error] %></div>
-        <% end %>
+        <div data-hook="breadcrumbs">
+          <%= breadcrumbs(@taxon) %>
+        </div>
+        <div data-hook="flash-messages">
+          <%= flash_messages %>
+        </div>
         <%= yield %>
       </div>
-      <%= render :partial => 'shared/footer'%>
     </div>
-
+    <%= render :partial => 'shared/footer'%>
   </body>
 </html>
