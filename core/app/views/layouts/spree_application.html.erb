@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head data-hook="inside_head">
-    <%= render :partial => 'shared/head'%>
+    <%= render 'shared/head'%>
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>">
     <div id="header">
       <ul id="nav-bar">
         <%= render 'shared/nav_bar' %>
       </ul>
-      <div data-hook="logo">
+      <div id="logo">
         <%= logo %>
       </div>
     </div>
@@ -21,15 +21,18 @@
       <% end %>
 
       <div id="content">
-        <div data-hook="breadcrumbs">
-          <%= breadcrumbs(@taxon) %>
-        </div>
-        <div data-hook="flash-messages">
-          <%= flash_messages %>
-        </div>
+        <%= breadcrumbs(@taxon) %>
+        <%= flash_messages %>
         <%= yield %>
       </div>
     </div>
-    <%= render :partial => 'shared/footer'%>
+    
+    <div id="footer">
+      <div id="footer-left" data-hook="footer_left">
+        <p><%= t("powered_by") %> <a href="http://spreecommerce.com/">Spree</a></p>
+      </div>
+      <div id="footer-right" data-hook="footer_right"></div>
+    </div>
+    <%= render 'shared/google_analytics' %>
   </body>
 </html>

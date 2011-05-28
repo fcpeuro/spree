@@ -112,7 +112,7 @@ module Spree::BaseHelper
       crumbs << content_tag(:li, content_tag(:span, t('products')))
     end
     crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join))
-    content_tag(:div, crumb_list + tag(:br, {:class => 'clear'}, false, true), :class => 'breadcrumbs')
+    content_tag(:div, crumb_list + tag(:br, {:class => 'clear'}, false, true), :id => 'breadcrumbs')
   end
 
   def available_countries
