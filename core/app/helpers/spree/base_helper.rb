@@ -97,7 +97,7 @@ module Spree::BaseHelper
       else
         ''
       end
-    end.join("\n")
+    end.join("\n").html_safe
   end
   
   def breadcrumbs(taxon, separator="&nbsp;&raquo;&nbsp;")
