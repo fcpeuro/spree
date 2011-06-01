@@ -21,10 +21,10 @@
         <div id="subtotal">
           <h3><%= "#{t("subtotal")}: #{order_price(@order)}" %></h3>
           <div class="links">
-            <button type="submit" class="large primary">
+            <button type="submit" class="large primary" id="update-button">
               <%= image_tag('icons/update.png') + t('update') %>
             </button>
-            <%= link_to image_tag('icons/checkout.png') + t("checkout"), checkout_path, :class => 'button checkout primary' %>
+            <%= link_to image_tag('icons/checkout.png') + t("checkout"), checkout_path, :class => 'button checkout primary', :id => 'checkout-link' %>
           </div>
         </div>
 
