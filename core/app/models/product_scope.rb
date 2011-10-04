@@ -24,7 +24,7 @@ class ProductScope < ActiveRecord::Base
   # Applies product scope on Product model or another named scope
   def apply_on(another_scope)
     array = *self.arguments
-    if Product.respond_to?(self.name.intern)
+    if Product.scopes.include?(self.name.intern)
       relation2 = if (array.blank? || array.size < 2)
                       Product.send(self.name.intern, array.try(:first))
                   else
