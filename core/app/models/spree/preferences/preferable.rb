@@ -130,4 +130,4 @@ module Spree::Preferences::Preferable
       value
     end
   end
-end
+end unless defined?(Spree::Preferences::Preferable)
