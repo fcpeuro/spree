@@ -20,7 +20,7 @@ module Spree
     before_validation :validate_source
     before_create :set_unique_identifier
 
-    after_save :create_payment_profile, if: :profiles_supported?
+    #after_save :create_payment_profile, if: :profiles_supported?
 
     # update the order totals, etc.
     after_save :update_order
@@ -77,6 +77,9 @@ module Spree
       event :complete do
         transition from: [:processing, :pending, :checkout], to: :completed
       end
+      
+      #after_transition to: :completed, do: :create_payment_profile
+      
       event :void do
         transition from: [:pending, :processing, :completed, :checkout], to: :void
       end
@@ -86,6 +89,14 @@ module Spree
       end
 
       after_transition do |payment, transition|
+        puts "Payment state transtion to #{transition.to} \n" * 5
+        puts payment.inspect
+        puts payment.source.inspect
+        
+        if transition.to == 'completed'
+          payment.create_payment_profile
+        end
+        
         payment.state_changes.create!(
           previous_state: transition.from,
           next_state:     transition.to,
@@ -169,7 +180,7 @@ module Spree
       checkout? || pending?
     end
 
-    private
+    #private
 
       def validate_source
         if source && !source.valid?
@@ -186,20 +197,27 @@ module Spree
       end
 
       def create_payment_profile
+        puts "calling #create_payment_profile BEFORE guard clauses\n" * 20
+        return unless profiles_supported?
+        puts "payment profiles are supported"
+        # return unless number
         # Don't attempt to create on bad payments.
         return if %w(invalid failed).include?(state)
+        puts "payment is NOT failed or invalid"
         # Payment profile cannot be created without source
         return unless source
+        puts "payment has a source"
         # Imported payments shouldn't create a payment profile.
         return if source.imported
-
         payment_method.create_profile(self)
       rescue ActiveMerchant::ConnectionError => e
         gateway_error e
       end
 
       def invalidate_old_payments
+        puts "About to invalidate old payments (in payment.rb) \n" * 3 
         if state != 'invalid' and state != 'failed'
+          puts "total # of payments w/ state checkout: #{order.payments.count}"
           order.payments.with_state('checkout').where("id != ?", self.id).each do |payment|
             payment.invalidate!
           end
