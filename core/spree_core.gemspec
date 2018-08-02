@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files        = Dir['LICENSE', 'README.md', 'app/**/*', 'config/**/*', 'lib/**/*', 'db/**/*', 'vendor/**/*']
   s.require_path = 'lib'
 
-  s.add_dependency 'activemerchant', '~> 1.44.1'
+  s.add_dependency 'activemerchant', '~> 1.44'
   s.add_dependency 'acts_as_list', '~> 0.3'
   s.add_dependency 'awesome_nested_set', '~> 3.0.1'
   s.add_dependency 'carmen', '~> 1.0.0'
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'paperclip', '~> 4.2.0'
   s.add_dependency 'paranoia', '~> 2.1.0'
   s.add_dependency 'premailer-rails'
-  s.add_dependency 'rails', '~> 4.1.11'
+  s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'ransack', '~> 1.4.1'
   s.add_dependency 'state_machine', '1.2.0'
   s.add_dependency 'stringex', '~> 1.5.1'
