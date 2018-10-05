@@ -20,8 +20,6 @@ module Spree
     before_validation :validate_source
     before_create :set_unique_identifier
 
-    after_save :create_payment_profile, if: :profiles_supported?
-
     # update the order totals, etc.
     after_save :update_order
 
@@ -186,8 +184,10 @@ module Spree
       end
 
       def create_payment_profile
-        # Don't attempt to create on bad payments.
-        return if %w(invalid failed).include?(state)
+        # Check if profiles are even supported
+        return unless profiles_supported?
+        # Don't attempt to create on bad payment
+        return unless state == 'completed'
         # Payment profile cannot be created without source
         return unless source
         # Imported payments shouldn't create a payment profile.
