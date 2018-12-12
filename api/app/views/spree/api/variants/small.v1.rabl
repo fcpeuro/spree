@@ -2,6 +2,7 @@ cache [I18n.locale, @current_user_roles.include?('admin'), 'small_variant', root
 
 attributes *variant_attributes
 
+node(:msrp) { |v| v.product.try(:msrp)&.to_s }
 node(:brand_name) { |p| p.brand.try(:name) }
 node(:display_price) { |p| p.display_price.to_s }
 node(:options_text) { |v| v.options_text }
