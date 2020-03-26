@@ -5,6 +5,7 @@ var set_taxon_select = function(){
     $('#product_taxon_ids').select2({
       placeholder: Spree.translations.taxon_placeholder,
       multiple: true,
+      minimumInputLength: 3,
       initSelection: function (element, callback) {
         var url = Spree.url(Spree.routes.taxons_search, {
           ids: element.val(),
@@ -15,6 +16,7 @@ var set_taxon_select = function(){
         });
       },
       ajax: {
+        quietMillis: 350,
         url: Spree.routes.taxons_search,
         datatype: 'json',
         data: function (term, page) {
